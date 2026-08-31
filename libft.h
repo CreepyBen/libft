@@ -6,7 +6,7 @@
 /*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 14:33:37 by hlatt             #+#    #+#             */
-/*   Updated: 2026/08/31 00:13:53 by ben              ###   ########.fr       */
+/*   Updated: 2026/08/31 12:18:04 by ben              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,7 @@ void    ft_putstr_fd(char *s, int fd);
 void    ft_putendl_fd(char *s, int fd);
 
 void    ft_putnbr_fd(int n, int fd);
+
+// only part 1 & 2 completed.
 
 #endif
