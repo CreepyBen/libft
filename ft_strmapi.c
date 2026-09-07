@@ -1,35 +1,43 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/31 12:51:36 by ben               #+#    #+#             */
-/*   Updated: 2026/08/31 13:02:01 by ben              ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char	*result;
 	size_t	len;
 	size_t	i;
+	char	*str;
 
-	if (!s || !f)
-		return (NULL);
 	len = ft_strlen(s);
-	result = (char *)malloc(sizeof(char) * (len + 1));
-	if (!result)
-		return (NULL);
 	i = 0;
-	while (i < len)
+	str = malloc(len + 1);
+	if(str == NULL)
+		return (NULL);
+	while(s[i])
 	{
-		result[i] = f(i, s[i]);
+		str[i] = f(i, s[i]);
 		i++;
 	}
-	result[len] = '\0';
-	return (result);
+	str[i] = '\0';
+	return (str);
+}
+
+#include <stdio.h>
+
+static char	to_upper(unsigned int i, char c)
+{
+	(void)i;
+	return (ft_toupper(c));
+}
+
+int	main(void)
+{
+	char	*result;
+	char	*original;
+
+	original = "hello";
+	result = ft_strmapi(original, to_upper);
+
+	printf("original: %s\n", original);
+	printf("result:   %s\n", result);
+
+	free(result);
 }
