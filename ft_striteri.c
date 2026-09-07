@@ -6,7 +6,7 @@
 /*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/31 12:54:41 by ben               #+#    #+#             */
-/*   Updated: 2026/08/31 12:57:20 by ben              ###   ########.fr       */
+/*   Updated: 2026/09/07 16:09:04 by ben              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
 	size_t	i;
 
-	if (!s || !f)
+	if(!s || !f)
 		return ;
 	i = 0;
-	while (i < ft_strlen(s))
+	while(s[i])
 	{
-		f(i, &s[i]);
+		f(i,&s[i]);
 		i++;
 	}
 }
