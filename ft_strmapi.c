@@ -11,7 +11,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	str = malloc(len + 1);
 	if(str == NULL)
 		return (NULL);
-	while(s[i])
+	while(i < len)
 	{
 		str[i] = f(i, s[i]);
 		i++;
@@ -20,24 +20,24 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	return (str);
 }
 
-#include <stdio.h>
+// #include <stdio.h>
 
-static char	to_upper(unsigned int i, char c)
-{
-	(void)i;
-	return (ft_toupper(c));
-}
+// static char	to_upper(unsigned int i, char c)
+// {
+// 	(void)i;
+// 	return (ft_toupper(c));
+// }
 
-int	main(void)
-{
-	char	*result;
-	char	*original;
+// int	main(void)
+// {
+// 	char	*result;
+// 	char	*original;
 
-	original = "hello";
-	result = ft_strmapi(original, to_upper);
+// 	original = "hello";
+// 	result = ft_strmapi(original, to_upper);
 
-	printf("original: %s\n", original);
-	printf("result:   %s\n", result);
+// 	printf("original: %s\n", original);
+// 	printf("result:   %s\n", result);
 
-	free(result);
-}
+// 	free(result);
+// }
