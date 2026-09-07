@@ -6,7 +6,7 @@
 /*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/31 12:18:58 by ben               #+#    #+#             */
-/*   Updated: 2026/08/31 12:42:36 by ben              ###   ########.fr       */
+/*   Updated: 2026/09/04 18:03:37 by ben              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,19 @@
 static size_t	count_words(char const *s, char c)
 {
 	size_t	count;
+	size_t	i;
 
 	count = 0;
-	while (*s)
+	i = 0;
+	while (s[i])
 	{
-		while (*s == c)
-			s++;
-		if (*s && *s != c)
+		if (s[i] != c && (i == 0 || s[i - 1] == c))
 		{
 			count++;
-			while (*s && *s != c)
-				s++;
+			while (s[i] != c && s[i] != '\0')
+				i++;
 		}
+		i++;
 	}
 	return (count);
 }
@@ -36,8 +37,8 @@ static char	*extract_word(char const *s, size_t len)
 	char	*word;
 	size_t	i;
 
-	word = (char *)malloc(sizeof(char) * (len + 1));
-	if (!word)
+	word = malloc(len + 1);
+	if (word == NULL)
 		return (NULL);
 	i = 0;
 	while (i < len)
@@ -99,10 +100,20 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	word_count = count_words(s, c);
-	split = (char **)malloc(sizeof(char *) * (word_count + 1));
+	split = malloc((word_count + 1) * sizeof(char *));
 	if (!split)
 		return (NULL);
 	if (!fill_words(split, s, c))
 		return (NULL);
 	return (split);
+}
+
+#include <stdio.h>
+int	main(void)
+{
+	char	**result;
+
+	result = ft_split(",,,", ',');
+	printf("%s %s", result[0], result[1]);
+	return (0);
 }
