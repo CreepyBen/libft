@@ -1,61 +1,56 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/31 12:48:14 by ben               #+#    #+#             */
-/*   Updated: 2026/08/31 12:59:54 by ben              ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
 
-static int	ft_numlen(long n)
+static size_t count_digits(int n)
 {
-	int	len;
+	long	temp;
+	size_t	count;
+	temp = n;
+	if (n < 0)
+		temp = -temp;
 
-	len = 0;
-	if (n <= 0)
-		len++;
-	while (n)
+	if (n == 0)
+		count = 1;
+	else
 	{
-		n /= 10;
-		len++;
+		count = 0;
+		while (temp > 0)
+		{
+			temp = temp / 10;
+			count++;
+		}
 	}
-	return (len);
+	if (n < 0)
+		count++;
+
+	return count;
 }
 
-static void	ft_fill(char *str, long nb, int len)
+char *ft_itoa(int n)
 {
-	while (len > 0)
-	{
-		str[len - 1] = '0' + (nb % 10);
-		nb /= 10;
-		len--;
-	}
-}
-
-char	*ft_itoa(int n)
-{
-	long	nb;
-	int		len;
+	size_t	count;
+	size_t	pos;
+	long	num;
 	char	*str;
 
-	nb = n;
-	len = ft_numlen(nb);
-	str = malloc(len + 1);
-	if (!str)
-		return (NULL);
-	str[len] = '\0';
-	if (nb < 0)
+	num = n;
+	if (n < 0)
+		num = -num;
+	count = count_digits(n);
+	str = malloc(count + 1);
+	if(str == NULL)
+		return NULL;
+	
+	pos = count - 1;
+	while (num > 0)
 	{
-		str[0] = '-';
-		nb = -nb;
-		ft_fill(str + 1, nb, len - 1);
+		str[pos] = num % 10 + '0';
+		num = num / 10;
+		pos--;
 	}
-	else
-		ft_fill(str, nb, len);
+	if (n == 0)
+		str[0] = '0';
+	if (n < 0)
+		str[0] = '-';
+	str[count] = '\0';
 	return (str);
 }
