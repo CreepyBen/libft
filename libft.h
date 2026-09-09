@@ -6,7 +6,7 @@
 /*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 14:33:37 by hlatt             #+#    #+#             */
-/*   Updated: 2026/08/31 12:18:04 by ben              ###   ########.fr       */
+/*   Updated: 2026/09/09 13:32:22 by ben              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,18 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+
+// Create a structure called s_list that contains a pointer to some data called 
+// *content and a pointer to another s_list called *next, 
+// then give this structure the convenient type name (t_list).
+
+// "next is a pointer that will point to another struct s_list."
+
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}	t_list;
 
 int		ft_atoi(const char *str);
 
@@ -85,5 +97,13 @@ void    ft_putendl_fd(char *s, int fd);
 void    ft_putnbr_fd(int n, int fd);
 
 // only part 1 & 2 completed.
+
+t_list	*ft_1stnew(void *content);
+
+void	ft_lstadd_front(t_list **lst, t_list *new);
+
+int		ft_lstsize(t_list *lst);
+
+t_list	*ft_lstlast(t_list *lst);
 
 #endif

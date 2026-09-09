@@ -1,0 +1,7 @@
+x → the actual 42
+&x → the address where 42 lives
+node->content → stores that address
+*node->content → accesses the data at that address
+
+2.
+lst → pointer-to-node → node
