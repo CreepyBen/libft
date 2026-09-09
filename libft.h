@@ -6,7 +6,7 @@
 /*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 14:33:37 by hlatt             #+#    #+#             */
-/*   Updated: 2026/09/09 13:32:22 by ben              ###   ########.fr       */
+/*   Updated: 2026/09/09 13:56:32 by ben              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <string.h>
 
 // Create a structure called s_list that contains a pointer to some data called 
 // *content and a pointer to another s_list called *next, 
@@ -98,12 +99,22 @@ void    ft_putnbr_fd(int n, int fd);
 
 // only part 1 & 2 completed.
 
-t_list	*ft_1stnew(void *content);
+t_list	*ft_lstnew(void *content);
 
 void	ft_lstadd_front(t_list **lst, t_list *new);
 
-int		ft_lstsize(t_list *lst);
+unsigned int		ft_lstsize(t_list *lst);
 
 t_list	*ft_lstlast(t_list *lst);
+
+void	ft_lstadd_back(t_list **lst, t_list *new);
+
+void	ft_lstdelone(t_list *lst, void (*del)(void *));
+
+void	ft_lstclear(t_list **lst, void (*del)(void *));
+
+void	ft_lstiter(t_list *lst, void (*f)(void *));
+
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 #endif
